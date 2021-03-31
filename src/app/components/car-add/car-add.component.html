@@ -1,0 +1,75 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Ürün Ekle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="carAddForm">
+          <div class="mb-3">
+            <label for="brandid">Marka Id</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="productName"
+                formControlName="BrandId"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="colorid">Renk Id</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="categoryId"
+                formControlName="ColorId"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="modelyear">Model Yılı</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="unitsInStock"
+                formControlName="ModelYear"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="dailyprice">Günlük Fiyat</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="unitPrice"
+                formControlName="DailyPrice"
+                class="form-control"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description">Açıklama</label>
+            <div class="form-group">
+              <input
+                type="text"
+                id="unitPrice"
+                formControlName="Description"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+      </div>
+    </div>
+  </div>
+</div>
