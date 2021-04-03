@@ -81,39 +81,20 @@ export class CarDetailPageComponent implements OnInit {
     if (this.detailForm.valid){
       let rentalModel: Rental = Object.assign({carId:this.carDetails[0].carId, userId:2}, this.detailForm.value);
         this.rentalService.checkIsCarRentable(rentalModel).subscribe((response)=>{
+          console.log(response.success)
+          this.isCarRentable =response.success
           if (response.success) {
             this.routePayment()
-          }else{
+          }else if(!response.success){
             console.log("hatasdaqds")
             this.toastrService.error("Araba kirada","Hata")
           }
+        },(responseError) =>{
+          console.log(responseError)
+          this.toastrService.error(responseError.error.message);
         })}
         else{
           this.toastrService.error("Tüm alanları doldurun", "Hata")
         }
-  }
-
-  // printDates(){
-  //   if (this.detailForm.valid) {
-  //     if (this.detailForm.valid) {
-  //       console.log(this.detailForm.value);
-  //       let rentalModel = Object.assign({}, this.detailForm.value);
-  
-  //       this.rentalService.add(rentalModel).subscribe(
-  //         (response) => {
-  //           this.toastrService.info(response.message);
-  //           console.log(response);
-  //         },
-  //         (responseError) => {
-  //           this.toastrService.error(responseError);
-  //         }
-  //       );
-  //     }
-  //   }
-  //   else{
-  //     this.toastrService.error("Tüm alanları doldurun", "Hata")
-  //   }
-  // }
-
-  
+  }  
 }
