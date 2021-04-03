@@ -1,9 +1,11 @@
 .container{
-    margin-top: 100px;
+    margin-top: 70px;
 
 }
 
-.col-md-7 h2{
-    color: #555
+.carName{   
+    font-weight: 500;
+    font-size: 30px;
 }
+
 

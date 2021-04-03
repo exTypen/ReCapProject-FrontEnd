@@ -1,31 +1,66 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-5">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-              <div [class]="setImageClass(image)" *ngFor="let image of images">
-                <img [src]="images.length !== 0 ?
-                imageBasePath+image : imageBasePath + defaultImg" class="d-block w-100" alt="...">
-              </div>
+<form [formGroup]="detailForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div id="carouselExampleControls" style="width: auto" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div [class]="setImageClass(image)" *ngFor="let image of images">
+              <img [src]="
+                  images.length !== 0
+                    ? imageBasePath + image
+                    : imageBasePath + defaultImg
+                " class="d-block w-100" alt="..." />
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
           </div>
-    </div>
-    <div class="col-md-7" *ngFor="let car of carDetails">
-      <h2>{{car.description}}</h2>
-      <p><b>Marka:</b> {{car.brandName}}</p>
-      <p><b>Renk:</b> {{car.colorName}}</p>
-      <p><b>Model Yılı:</b> {{car.modelYear}}</p>
-      <p><b>Günlük Fiyatı:</b> {{car.dailyPrice}}TL</p>
-      <button type="button" class="btn btn-success">Kirala</button>
-    </div>
-  </div>
-</div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div *ngFor="let car of carDetails">
+          <p style="margin-top: 15px;" class="carName">{{ car.description }}</p>
+          <div class="row" style="margin-top: 40px;">
+            <div class="col-sm-6">
+              <p><b>Marka:</b> {{ car.brandName }}</p>
+              <p style="margin-top: 6px;"><b>Renk:</b> {{ car.colorName }}</p>
+              <p><b>Kiralama Tarihi:</b></p>
+              <input formControlName="rentDate" style="margin-top: -8px;" class="form-control" type="date" />
+            </div>
+            <div class="col-sm-6">
+              <p><b>Model Yılı:</b> {{ car.modelYear }}</p>
+              <p><b>Günlük Fiyatı:</b> {{ car.dailyPrice }}TL</p>
+              <p><b>Dönüş Tarihi:</b></p>
+              <input formControlName="returnDate" style="margin-top: -8px;" class="form-control" type="date" />
+            </div>
+          </div>
+        </div>
 
+        <button type="button" style="margin-top: 12px; width: 370px;" class="btn btn-primary" (click)="checkIsCarRentable()">
+          Kirala
+        </button>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Kiralama Tarihi</th>
+          <th>Geri Dönme Tarihi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rental of rentals ">
+          <td>{{ rental.rentDate }}</td>
+          <td>{{ rental.returnDate }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>

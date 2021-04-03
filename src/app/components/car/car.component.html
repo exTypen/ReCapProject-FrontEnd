@@ -1,7 +1,7 @@
 <div class="container-fluid d-flex justify-content-center">
   <div class="row mt-5">
     <div class="row">
-      <div class="col-sm-4" *ngFor="let car of carDetails">
+      <div [class]="colSmGenerator(carDetails)" *ngFor="let car of carDetails">
         <div class="card">
           <img
             [src]="
@@ -33,12 +33,12 @@
               <div class="d-flex flex-column">
                 <h6 class="text-muted mb-2">Günlük Fiyatı</h6>
                 <div class="d-flex flex-row">
-                  <h4 class="ml-1">{{ car.dailyPrice }}</h4>
+                  <h4 class="ml-1" style="margin-top: -5px;">{{ car.dailyPrice }}</h4>
                 </div>
               </div>
             </div>
             <div class="mx-3 mt-3 mb-2">
-              <a routerLink="cars/page/{{ car.carId }}">
+              <a (click)="route(car.carId)">
                 <button type="button" class="btn btn-primary">
                   <small>Detaylar</small>
                 </button>

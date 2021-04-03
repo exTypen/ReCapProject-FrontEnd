@@ -1,3 +1,5 @@
+import { Rental } from "./rental";
+
 export interface CarDetail {
   carId: number;
   brandName: string;
@@ -6,4 +8,5 @@ export interface CarDetail {
   dailyPrice: number;
   description: string;
   images: string[];
+  rentals: Rental[];
 }
