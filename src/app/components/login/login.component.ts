@@ -5,8 +5,11 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +21,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private localStorageService: LocalStorageService,
+    private userService: UserService,
+    private jwtHelperService: JwtHelperService = new JwtHelperService(),
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +47,9 @@ export class LoginComponent implements OnInit {
         (response) => {
           this.toastrService.info(response.message);
           console.log(response);
-          localStorage.setItem('token', response.data.token);
+          this.localStorageService.set("token", response.data.token)
+          console.log(this.jwtHelperService.decodeToken(response.data.token))
+          this.localStorageService.set('email', this.loginForm.value.email)
         },
         (responseError) => {
           this.toastrService.error(responseError);

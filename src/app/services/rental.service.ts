@@ -24,4 +24,8 @@ export class RentalService {
   checkIsCarRentable(rental: Rental) :Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl + "carrentedcheck", rental)
   }
+
+  getRentalDetails():Observable<ListResponseModel<Rental>>{
+    return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl+"getall")
+  }
 }

@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminBrandsComponent } from './components/admin-brands/admin-brands.component';
+import { AdminCarsComponent } from './components/admin-cars/admin-cars.component';
+import { AdminColorsComponent } from './components/admin-colors/admin-colors.component';
+import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
+import { AdminComponent } from './components/admin/admin.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarDetailPageComponent } from './components/car-detail-page/car-detail-page.component';
 import { CarComponent } from './components/car/car.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminGuard } from './guards/admin.guard';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -19,6 +25,11 @@ const routes: Routes = [
   { path: 'cars/add', component: CarAddComponent, canActivate: [LoginGuard] },
   { path: 'car/payment/:carId', component: PaymentComponent },
   { path: 'car/page/:carId', component: CarDetailPageComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: 'admin/rentals', component: AdminRentalsComponent },
+  { path: 'admin/cars', component: AdminCarsComponent },
+  { path: 'admin/colors', component: AdminColorsComponent },
+  { path: 'admin/brands', component: AdminBrandsComponent },
   
 ];
 

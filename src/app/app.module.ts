@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { JwtHelperService } from "@auth0/angular-jwt";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,12 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { CarDetailPageComponent } from './components/car-detail-page/car-detail-page.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminCarsComponent } from './components/admin-cars/admin-cars.component';
+import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
+import { AdminColorsComponent } from './components/admin-colors/admin-colors.component';
+import { AdminBrandsComponent } from './components/admin-brands/admin-brands.component';
+
 
 @NgModule({
   declarations: [
@@ -29,12 +36,18 @@ import { FilterComponent } from './components/filter/filter.component';
     CarDetailPageComponent,
     PaymentComponent,
     FilterComponent,
+    AdminComponent,
+    AdminCarsComponent,
+    AdminRentalsComponent,
+    AdminColorsComponent,
+    AdminBrandsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    //JwtHelperService,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
