@@ -2,7 +2,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { JwtHelperService } from "@auth0/angular-jwt";
+import { JwtModule } from '@auth0/angular-jwt';
+import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MenuModule } from 'primeng/menu';
+import { TableModule } from 'primeng/table';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,15 +28,25 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ConfirmationService } from 'primeng/api';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CarDetailPageComponent } from './components/car-detail-page/car-detail-page.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminCarsComponent } from './components/admin-cars/admin-cars.component';
 import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
-import { AdminColorsComponent } from './components/admin-colors/admin-colors.component';
-import { AdminBrandsComponent } from './components/admin-brands/admin-brands.component';
+import { AdminFilterComponent } from './components/admin-filter/admin-filter.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorUpdateComponent } from './components/color-update/color-update.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -39,24 +62,52 @@ import { AdminBrandsComponent } from './components/admin-brands/admin-brands.com
     AdminComponent,
     AdminCarsComponent,
     AdminRentalsComponent,
-    AdminColorsComponent,
-    AdminBrandsComponent,
+    AdminFilterComponent,
+    CarUpdateComponent,
+    ColorAddComponent,
+    ColorUpdateComponent,
+    BrandAddComponent,
+    BrandUpdateComponent,
+
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    //JwtHelperService,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    }),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
     FormsModule,
     ReactiveFormsModule,
+    CarouselModule,
+    ButtonModule,
+    CardModule ,
+    SplitButtonModule ,
+    MenuModule ,
+    TableModule ,
+    ConfirmDialogModule,
+    DropdownModule,
+    PasswordModule,
+    InputTextModule,
+    InputTextareaModule,
+    MultiSelectModule,
+    DynamicDialogModule,
+    
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    DialogService,
+    ConfirmationService,
   ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

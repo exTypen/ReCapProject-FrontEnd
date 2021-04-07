@@ -1,31 +1,33 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Araba ID</th>
-            <th>Marka</th>
-            <th>Renk</th>
-            <th>Model Yılı</th>
-            <th>Günlük Ücreti</th>
-            <th>Açıklama</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let carDetail of carDetails.slice(0,10) ">
-            <td>{{ carDetail.carId }}</td>
-            <td>{{ carDetail.brandName }}</td>
-            <td>{{carDetail.colorName}}</td>
-            <td>{{carDetail.modelYear}}</td>
-            <td>{{carDetail.dailyPrice}}</td>
-            <td>{{carDetail.description}}</td>
-            <td><button type="button" style="width: 50px;" class="btn btn-primary">
-                Ayrıntılar
-              </button>
-              <button type="button" style="width: 50px;" class="btn btn-primary">
-                Sil
-              </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div style="margin-top: 20px;">
+    <p-table [value]="carDetails">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Araba ID</th>
+                <th>Marka</th>
+                <th>Renk</th>
+                <th>Model Yılı</th>
+                <th>Günlük Ücreti</th>
+                <th>Açıklama</th>
+                <th>
+                    <button routerLink="/admin/cars/add" style="width: max;" pButton type="button" label="Ekle"></button>
+                </th>
+                
+                
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-carDetail>
+            <tr>
+                <td>{{carDetail.carId}}</td>
+                <td>{{carDetail.brandName}}</td>
+                <td>{{carDetail.colorName}}</td>
+                <td>{{carDetail.modelYear}}</td>
+                <td>{{carDetail.dailyPrice}}</td>
+                <td>{{carDetail.description}}</td>
+                <td>
+                    <button routerLink="/admin/cars/update/{{carDetail.carId}}" pButton type="button" label="Düzenle"></button>
+                    <button style="margin-left: 10px;" pButton type="button" label="Sil" class="p-button-danger" (click)="delete(carDetail)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

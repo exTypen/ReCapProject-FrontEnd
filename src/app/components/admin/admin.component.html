@@ -1,7 +1,8 @@
-<div class="row" routerLink="/admin/cars">
+<div style="margin-top: 20px;" class="row" routerLink="/admin/cars">
     <div class="col-md-12">
-        <table class="table table-striped">
-            <thead>
+        <p style="text-align: center; font-size: 20px; font-weight: 500;">Araba Listesi</p>
+        <p-table [value]="carDetails" >
+            <ng-template pTemplate="header">
                 <tr>
                     <th>Araba ID</th>
                     <th>Marka</th>
@@ -10,24 +11,26 @@
                     <th>Günlük Ücreti</th>
                     <th>Açıklama</th>
                 </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let carDetail of carDetails.slice(0,10) ">
-                    <td>{{ carDetail.carId }}</td>
-                    <td>{{ carDetail.brandName }}</td>
+            </ng-template>
+            <ng-template pTemplate="body" let-carDetail>
+                <tr>
+                    <td>{{carDetail.carId}}</td>
+                    <td>{{carDetail.brandName}}</td>
                     <td>{{carDetail.colorName}}</td>
                     <td>{{carDetail.modelYear}}</td>
                     <td>{{carDetail.dailyPrice}}</td>
                     <td>{{carDetail.description}}</td>
                 </tr>
-            </tbody>
-        </table>
+            </ng-template>
+        </p-table>
+        
     </div>
 </div>
-<div class="row">
+<div style="margin-top: 20px;" class="row">
     <div class="col-md-6" routerLink="/admin/rentals">
-        <table class="table table-striped">
-            <thead>
+        <p style="text-align: center; font-size: 20px; font-weight: 500;">Kiralama Listesi</p>
+        <p-table [value]="rentals">
+            <ng-template pTemplate="header">
                 <tr>
                     <th>Kiralama ID</th>
                     <th>Araba ID</th>
@@ -35,51 +38,53 @@
                     <th>Başlangıç Tarihi</th>
                     <th>Dönüş Tarihi</th>
                 </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let rental of rentals.slice(0,7) ">
+            </ng-template>
+            <ng-template pTemplate="body" let-rental>
+                <tr>
                     <td>{{rental.id}}</td>
                     <td>{{rental.carId}}</td>
                     <td>{{rental.userId}}</td>
                     <td>{{rental.rentDate | date:"shortDate"}}</td>
                     <td>{{rental.returnDate | date:"shortDate"}}</td>
                 </tr>
-            </tbody>
-        </table>
+            </ng-template>
+        </p-table>
     </div>
     <div class="col-md-6">
-        <div class="row">
+        <div routerLink="/admin/filter" class="row">
             <div class="col-md-6">
-                <table class="table table-striped">
-                    <thead>
+                <p style="text-align: center; font-size: 20px; font-weight: 500;">Marka Listesi</p>
+                <p-table [value]="brands">
+                    <ng-template pTemplate="header">
                         <tr>
                             <th>Marka ID</th>
                             <th>Marka Adı</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let carDetail of carDetails.slice(0,5) ">
-                            <td>{{ carDetail.carId }}</td>
-                            <td>{{ carDetail.brandName }}</td>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-brand>
+                        <tr>
+                            <td>{{ brand.brandId }}</td>
+                            <td>{{ brand.brandName }}</td>
                         </tr>
-                    </tbody>
-                </table>
+                    </ng-template>
+                </p-table>
             </div>
             <div class="col-md-6">
-                <table class="table table-striped">
-                    <thead>
+                <p style="text-align: center; font-size: 20px; font-weight: 500;">Renk Listesi</p>
+                <p-table [value]="colors">
+                    <ng-template pTemplate="header">
                         <tr>
                             <th>Renk ID</th>
                             <th>Renk Adı</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let carDetail of carDetails.slice(0,5) ">
-                            <td>{{ carDetail.carId }}</td>
-                            <td>{{ carDetail.brandName }}</td>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-color>
+                        <tr>
+                            <td>{{ color.colorId }}</td>
+                            <td>{{ color.colorName }}</td>
                         </tr>
-                    </tbody>
-                </table>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </div>

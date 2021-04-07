@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+
+.container{
+    margin-top: -40px;
+}
+
 body {
     background: #F5F1EE;
     font-family: 'Roboto', sans-serif
 }
 
 .card {
-    
     margin-top: 20px;
     width: 250px;
     border-radius: 10px

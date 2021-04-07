@@ -1,1 +1,27 @@
-<p>admin-rentals works!</p>
+<div style="margin-top: 20px;">
+    <p-table [value]="rentals">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Rental ID</th>
+                <th>Araba ID</th>
+                <th>Kullanıcı ID</th>
+                <th>Başlangıç Tarihi</th>
+                <th>Dönüş Tarihi</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rental>
+            <tr>
+                <td>{{rental.id}}</td>
+                <td>{{rental.carId}}</td>
+                <td>{{rental.userId}}</td>
+                <td>{{rental.rentDate | date:"shortDate"}}</td>
+                <td>{{rental.returnDate | date:"shortDate"}}</td>
+                <td>
+                    <button pButton type="button" label="Düzenle"></button>
+                    <button style="margin-left: 10px;" pButton type="button" label="Sil" class="p-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

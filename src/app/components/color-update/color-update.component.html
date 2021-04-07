@@ -1,0 +1,30 @@
+<div style="margin-top: 20px;" class="content">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 style="margin-bottom: 0px;" class="title">Renk Güncelle</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="colorUpdateForm">
+            
+            <div class="mb-3">
+              <label for="colorName">Renk Adı</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="ColorName"
+                  formControlName="ColorName"
+                  class="form-control"
+                />
+              </div>
+            </div>
+  
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="update()">Güncelle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

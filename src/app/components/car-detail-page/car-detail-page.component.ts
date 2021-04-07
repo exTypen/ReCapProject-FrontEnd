@@ -65,7 +65,6 @@ export class CarDetailPageComponent implements OnInit {
       this.carDetails = response.data;
       this.images = response.data[0].images
       this.rentals = response.data[0].rentals
-      console.log(this.rentals);
     });
   }
 

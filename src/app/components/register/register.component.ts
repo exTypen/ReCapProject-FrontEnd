@@ -6,6 +6,7 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { RegisterModel } from 'src/app/models/registerModel';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -34,20 +35,29 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register() {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-      let registerModel = Object.assign({}, this.registerForm.value);
+  // register() {
+  //   if (this.registerForm.valid) {
+  //     console.log(this.registerForm.value);
+  //     let registerModel = Object.assign({}, this.registerForm.value);
 
-      this.authService.register(registerModel).subscribe(
-        (response) => {
-          this.toastrService.info(response.message);
-          localStorage.setItem('token', response.data.token);
-        },
-        (responseError) => {
-          console.log(responseError);
-        }
-      );
+  //     this.authService.register(registerModel).subscribe(
+  //       (response) => {
+  //         this.toastrService.info(response.message);
+  //         localStorage.setItem('token', response.data.token);
+  //       },
+  //       (responseError) => {
+  //         console.log(responseError);
+  //       }
+  //     );
+  //   }
+  // }
+
+  register(){
+    if(this.registerForm.valid){
+      let registerModel:RegisterModel = Object.assign({},this.registerForm.value)
+      this.authService.register(registerModel)
+    }else{
+      this.toastrService.info("Lütfen tüm alanları doldurunuz","Bilgilendirme")
     }
   }
 }

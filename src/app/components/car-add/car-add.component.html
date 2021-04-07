@@ -1,32 +1,26 @@
-<div class="content">
+<div style="margin-top: 20px;" class="content">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <h5 class="title">Ürün Ekle</h5>
+        <h3 style="margin-bottom: 0px;" class="title">Ürün Ekle</h3>
       </div>
       <div class="card-body">
         <form [formGroup]="carAddForm">
-          <div class="mb-3">
-            <label for="brandid">Marka Id</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="productName"
-                formControlName="BrandId"
-                class="form-control"
-              />
+          <div style="margin-bottom: 10px;">
+            <label for="brand">Marka:</label>
+            <div style="margin-top: -10px;">
+              <select class="form-select" formControlName="BrandId" style="margin-top: 10px;" [(ngModel)]="brandId">
+                <option *ngFor="let brand of brands" [ngValue]="brand.brandId">{{brand.brandName}}</option>
+              </select>
             </div>
           </div>
 
-          <div class="mb-3">
-            <label for="colorid">Renk Id</label>
-            <div class="form-group">
-              <input
-                type="number"
-                id="categoryId"
-                formControlName="ColorId"
-                class="form-control"
-              />
+          <div style="margin-bottom: 10px;">
+            <label for="color">Renk:</label>
+            <div style="margin-top: -10px;">
+              <select class="form-select" formControlName="ColorId" style="margin-top: 10px;" [(ngModel)]="colorId">
+                <option *ngFor="let color of colors" [ngValue]="color.colorId">{{color.colorName}}</option>
+              </select>
             </div>
           </div>
 
@@ -68,7 +62,7 @@
         </form>
       </div>
       <div class="card-footer">
-        <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+        <button class="btn btn-fill btn-primary" (click)="add()" routerLink="/admin/cars">Ekle</button>
       </div>
     </div>
   </div>

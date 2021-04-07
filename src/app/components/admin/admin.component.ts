@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Brand } from 'src/app/models/brand';
 import { CarDetail } from 'src/app/models/cardetail';
+import { Color } from 'src/app/models/color';
 import { Rental } from 'src/app/models/rental';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
@@ -16,6 +18,8 @@ export class AdminComponent implements OnInit {
 
   rentals: Rental[] = [];
   carDetails: CarDetail[] = [];
+  brands: Brand[]
+  colors: Color[]
   constructor(private carService:CarService,
     private colorService:ColorService,
     private brandService: BrandService,
@@ -25,6 +29,8 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.getCarDetails()
     this.getRentalDetails()
+    this.getBrands()
+    this.getColors()
   }
 
   getCarDetails() {
@@ -36,6 +42,18 @@ export class AdminComponent implements OnInit {
   getRentalDetails(){
     this.rentalService.getRentalDetails().subscribe((response) => {
       this.rentals = response.data
+    })
+  }
+
+  getBrands(){
+    this.brandService.getBrands().subscribe((response)=>{
+      this.brands = response.data
+    })
+  }
+
+  getColors(){
+    this.colorService.getColors().subscribe((response)=>{
+      this.colors = response.data
     })
   }
 }

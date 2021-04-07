@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminBrandsComponent } from './components/admin-brands/admin-brands.component';
 import { AdminCarsComponent } from './components/admin-cars/admin-cars.component';
-import { AdminColorsComponent } from './components/admin-colors/admin-colors.component';
+import { AdminFilterComponent } from './components/admin-filter/admin-filter.component';
 import { AdminRentalsComponent } from './components/admin-rentals/admin-rentals.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarDetailPageComponent } from './components/car-detail-page/car-detail-page.component';
+import { CarUpdateComponent } from './components/car-update/car-update.component';
 import { CarComponent } from './components/car/car.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { ColorUpdateComponent } from './components/color-update/color-update.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -22,14 +26,18 @@ const routes: Routes = [
   { path: 'cars/:brandId/:colorId', component: CarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'cars/add', component: CarAddComponent, canActivate: [LoginGuard] },
+  { path: 'admin/cars/add', component: CarAddComponent},
   { path: 'car/payment/:carId', component: PaymentComponent },
   { path: 'car/page/:carId', component: CarDetailPageComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: 'admin', component: AdminComponent},//, canActivate:[AdminGuard]},
   { path: 'admin/rentals', component: AdminRentalsComponent },
   { path: 'admin/cars', component: AdminCarsComponent },
-  { path: 'admin/colors', component: AdminColorsComponent },
-  { path: 'admin/brands', component: AdminBrandsComponent },
+  { path: 'admin/cars/update/:carId', component: CarUpdateComponent },
+  { path: 'admin/filter', component: AdminFilterComponent },
+  { path: 'admin/colors/add', component: ColorAddComponent },
+  { path: 'admin/colors/update/:colorId', component: ColorUpdateComponent },
+  { path: 'admin/brands/update/:brandId', component: BrandUpdateComponent },
+  { path: 'admin/brands/add', component: BrandAddComponent },
   
 ];
 
