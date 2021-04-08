@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Color } from '../models/color';
 import { ResponseModel } from '../models/responseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ColorService {
-  apiUrl = 'https://localhost:44332/api/colors/';
+  apiUrl = environment.baseUrl + "/api/colors/"
   constructor(private httpClient: HttpClient) {}
 
   getColors(): Observable<ListResponseModel<Color>> {

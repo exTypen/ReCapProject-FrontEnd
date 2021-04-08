@@ -16,7 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AdminGuard } from './guards/admin.guard';
-import { LoginGuard } from './guards/login.guard';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CarComponent },

@@ -30,20 +30,18 @@ export class BrandUpdateComponent implements OnInit {
     this.activatedRoute.params.subscribe((params)=>{
       if(params["brandId"]){
         this.getBrandById(params["brandId"])
-        this.createBrandUpdateForm()
       }
     })
   }
 
-  getBrandById(id:number){
-    this.brandService.getById(id).subscribe((response)=>{
-      this.brand = response.data[0]
-    })
+  async getBrandById(id:number){
+   this.brand = (await (this.brandService.getById(id).toPromise())).data[0]
+   this.createBrandUpdateForm()
   }
 
   createBrandUpdateForm() {
     this.brandUpdateForm = this.formBuilder.group({
-      BrandName: ['', Validators.required]
+      BrandName: [this.brand.brandName, Validators.required]
     });
   }
 

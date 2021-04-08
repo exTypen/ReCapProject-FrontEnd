@@ -1,12 +1,38 @@
-<select class="form-select" style="margin-top: 70px;" [(ngModel)]="brandId">
-    <option value="0">Markalar</option>
-    <option *ngFor="let brand of brands" [ngValue]="brand.brandId">{{brand.brandName}}</option>
-  </select>
-  
+
+<div style="margin-top: 70px;">
+  <div class="mb-3">
+    <input
+      style="margin-bottom: -10px;"
+      type="text"
+      [(ngModel)]="filterTextBrand"
+      class="form-control"
+      id="filterTextBrand"
+      placeholder="Marka Ara"
+    />
+  </div>
+  <select class="form-select"  [(ngModel)]="brandId">
+      <option value="0">Markalar</option>
+      <option *ngFor="let brand of brands | brandFilter: filterTextBrand" [ngValue]="brand.brandId">{{brand.brandName}}</option>
+    </select>
+</div>
+
+<div style="margin-top: -20px;">
+  <div class="mb-3">
+    <input
+      style="margin-top: 42px; margin-bottom: -10px"
+      type="text"
+      [(ngModel)]="filterTextColor"
+      class="form-control"
+      id="filterTextColor"
+      placeholder="Renk Ara"
+
+    />
+  </div>
   <select class="form-select" style="margin-top: 10px;" [(ngModel)]="colorId">
     <option value="0">Renkler</option>
-    <option *ngFor="let color of colors" [ngValue]="color.colorId">{{color.colorName}}</option>
+    <option *ngFor="let color of colors | colorFilter: filterTextColor" [ngValue]="color.colorId">{{color.colorName}}</option>
   </select>
+</div>
   
   <div class="d-grid">
     <button class="btn btn-primary" (click)="filter()">Filtrele</button>

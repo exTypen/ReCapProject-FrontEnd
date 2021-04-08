@@ -1,7 +1,7 @@
 <div style="margin-top: 20px;" class="row" routerLink="/admin/cars">
     <div class="col-md-12">
         <p style="text-align: center; font-size: 20px; font-weight: 500;">Araba Listesi</p>
-        <p-table [value]="carDetails" >
+        <p-table [value]="[0]" >
             <ng-template pTemplate="header">
                 <tr>
                     <th>Araba ID</th>
@@ -11,17 +11,18 @@
                     <th>Günlük Ücreti</th>
                     <th>Açıklama</th>
                 </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-carDetail>
-                <tr>
-                    <td>{{carDetail.carId}}</td>
-                    <td>{{carDetail.brandName}}</td>
-                    <td>{{carDetail.colorName}}</td>
-                    <td>{{carDetail.modelYear}}</td>
-                    <td>{{carDetail.dailyPrice}}</td>
-                    <td>{{carDetail.description}}</td>
-                </tr>
-            </ng-template>
+            </ng-template>           
+                <ng-template pTemplate="body">                    
+                    <tr *ngFor="let carDetail of carDetails.slice(0,6)">
+                        <td>{{carDetail.carId}}</td>
+                        <td>{{carDetail.brandName}}</td>
+                        <td>{{carDetail.colorName}}</td>
+                        <td>{{carDetail.modelYear}}</td>
+                        <td>{{carDetail.dailyPrice}}</td>
+                        <td>{{carDetail.description}}</td>
+                    </tr>
+                </ng-template>
+            
         </p-table>
         
     </div>
@@ -29,7 +30,7 @@
 <div style="margin-top: 20px;" class="row">
     <div class="col-md-6" routerLink="/admin/rentals">
         <p style="text-align: center; font-size: 20px; font-weight: 500;">Kiralama Listesi</p>
-        <p-table [value]="rentals">
+        <p-table [value]="[0]">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Kiralama ID</th>
@@ -39,8 +40,8 @@
                     <th>Dönüş Tarihi</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-rental>
-                <tr>
+            <ng-template pTemplate="body">
+                <tr *ngFor="let rental of rentals.slice(0,5)">
                     <td>{{rental.id}}</td>
                     <td>{{rental.carId}}</td>
                     <td>{{rental.userId}}</td>
@@ -54,15 +55,15 @@
         <div routerLink="/admin/filter" class="row">
             <div class="col-md-6">
                 <p style="text-align: center; font-size: 20px; font-weight: 500;">Marka Listesi</p>
-                <p-table [value]="brands">
+                <p-table [value]="[0]">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Marka ID</th>
                             <th>Marka Adı</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-brand>
-                        <tr>
+                    <ng-template pTemplate="body">
+                        <tr *ngFor="let brand of brands.slice(0,5)">
                             <td>{{ brand.brandId }}</td>
                             <td>{{ brand.brandName }}</td>
                         </tr>
@@ -71,15 +72,15 @@
             </div>
             <div class="col-md-6">
                 <p style="text-align: center; font-size: 20px; font-weight: 500;">Renk Listesi</p>
-                <p-table [value]="colors">
+                <p-table [value]="[0]">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Renk ID</th>
                             <th>Renk Adı</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-color>
-                        <tr>
+                    <ng-template pTemplate="body">
+                        <tr *ngFor="let color of colors.slice(0,5)">
                             <td>{{ color.colorId }}</td>
                             <td>{{ color.colorName }}</td>
                         </tr>

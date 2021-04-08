@@ -18,6 +18,7 @@ export class CarComponent implements OnInit {
   carDetails: CarDetail[] = [];
   imageBasePath = environment.baseUrl;
   defaultImg = '/uploads/default.jpg';
+  filterText = ""
   constructor(
     private carService: CarService,
     private carImageService: CarimageService,

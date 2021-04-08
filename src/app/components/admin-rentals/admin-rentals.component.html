@@ -7,7 +7,6 @@
                 <th>Kullanıcı ID</th>
                 <th>Başlangıç Tarihi</th>
                 <th>Dönüş Tarihi</th>
-                <th></th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rental>
@@ -16,11 +15,7 @@
                 <td>{{rental.carId}}</td>
                 <td>{{rental.userId}}</td>
                 <td>{{rental.rentDate | date:"shortDate"}}</td>
-                <td>{{rental.returnDate | date:"shortDate"}}</td>
-                <td>
-                    <button pButton type="button" label="Düzenle"></button>
-                    <button style="margin-left: 10px;" pButton type="button" label="Sil" class="p-button-danger"></button>
-                </td>
+                <td>{{rental.returnDate | date:"shortDate"}}</td>               
             </tr>
         </ng-template>
     </p-table>

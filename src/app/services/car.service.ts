@@ -5,12 +5,13 @@ import { Car } from '../models/car';
 import { HttpClient } from '@angular/common/http';
 import { CarDetail } from '../models/cardetail';
 import { ResponseModel } from '../models/responseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CarService {
-  apiUrl = 'https://localhost:44332/api/cars/';
+  apiUrl = environment.baseUrl + "/api/cars/"
   constructor(private httpClient: HttpClient) {}
 
   add(car: Car): Observable<ResponseModel> {

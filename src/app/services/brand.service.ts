@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Brand } from '../models/brand';
 import { ResponseModel } from '../models/responseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrandService {
-  apiUrl = "https://localhost:44332/api/brands/"
+  apiUrl = environment.baseUrl + "/api/brands/"
   constructor(private httpClient:HttpClient) { }
 
   getBrands(): Observable<ListResponseModel<Brand>> {

@@ -17,6 +17,9 @@ export class FilterComponent implements OnInit {
   colors: Color[] = [];
   colorId: number = 0
 
+  filterTextBrand = ""
+  filterTextColor = ""
+
   constructor(private brandService: BrandService,
     private router: Router,
     private colorService: ColorService) { }

@@ -1,90 +1,3 @@
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { JwtHelperService } from '@auth0/angular-jwt';
-// import { ToastrService } from 'ngx-toastr';
-// import { Observable } from 'rxjs';
-// import { environment } from 'src/environments/environment';
-// import { ListResponseModel } from '../models/listResponseModel';
-// import { LoginModel } from '../models/loginModel';
-// import { OperationClaim } from '../models/operationClaim';
-// import { RegisterModel } from '../models/registerModel';
-// import { ResponseModel } from '../models/responseModel';
-// import { SingleResponseModel } from '../models/singleResponseModel';
-// import { TokenModel } from '../models/tokenModel';
-// import { LocalStorageService } from './local-storage.service';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class AuthService {
-//   apiUrl = 'https://localhost:44332/api/';
-
-//   constructor(private httpClient: HttpClient,
-//     private localStorageService:LocalStorageService,
-//     private jwtHelper: JwtHelperService,
-//     private toastrService:ToastrService) {
-//     }
-
-//   login(loginModel: LoginModel) {
-//     return this.httpClient.post<SingleResponseModel<TokenModel>>(
-//       this.apiUrl + 'auth/login',
-//       loginModel
-//     );
-//   }
-
-//   register(registerModel: RegisterModel) {
-//     return this.httpClient.post<SingleResponseModel<TokenModel>>(
-//       this.apiUrl + 'auth/register',
-//       registerModel
-//     );
-//   }
-
-//   getClaimsByUserId(id:number): Observable<ListResponseModel<OperationClaim>> {
-//     return this.httpClient.get<ListResponseModel<OperationClaim>>(
-//       this.apiUrl + 'userclaims/getbyuser?id='+id
-//     );
-//   }
-
-//   loggedIn(): boolean {
-
-//     let isExpired = this.jwtHelper.isTokenExpired(this.localStorageService.getToken());
-//     return !isExpired;
-//   }
-  
-
-//   getCurrentUserId():number {
-//     var decoded = this.getDecodedToken()
-//     var propUserId = Object.keys(decoded).filter(x => x.endsWith("/nameidentifier"))[0];
-//     return Number(decoded[propUserId])
-//   }
-
-//   getUserName(): string{
-//     var decoded = this.getDecodedToken()
-//     var propUserName = Object.keys(decoded).filter(x => x.endsWith("/name"))[0];
-//     return decoded[propUserName]
-//   }
-
-
-//   getDecodedToken(){
-//     try{
-//       return this.jwtHelper.decodeToken(this.localStorageService.getToken());
-//     }
-//     catch(Error){
-//         return null;
-//     }
-//   }
-
-//   logOut() {
-//     this.localStorageService.remove("token");
-//     this.toastrService.success("Çıkış yapıldı","Başarılı")
-//     setTimeout(function(){
-//       location.reload()
-//     },400)
-//   }
-
-
-// }
-
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -100,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { OperationClaim } from '../models/operationClaim';
 //import { PasswordChangeModel } from '../models/passwordChangeModel';
 import { ResponseModel } from '../models/responseModel';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -108,7 +22,7 @@ export class AuthService {
   userName: string;
   currentUserId: number;
   roles: string[] = [];
-  apiUrl = 'https://localhost:44332/api/';
+  apiUrl = environment.baseUrl + "/api/"
   jwtHelper:JwtHelperService = new JwtHelperService();
 
   constructor(
@@ -158,11 +72,14 @@ export class AuthService {
     })
   }
 
-  // changePassword(passwordChangeModel:PasswordChangeModel):Observable<ResponseModel>{
-  //   let newPath = this.apiUrl + "auth/changepassword"
-  //   return this.httpClient
-  //   .put<ResponseModel>(newPath,passwordChangeModel)
-  // }
+  isAuthenticated():boolean{
+    if(localStorage.getItem('token')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 
   async setUserStats(){
     if(this.loggedIn()){
@@ -188,6 +105,8 @@ export class AuthService {
     var propUserName = Object.keys(decoded).filter(x => x.endsWith("/name"))[0];
     this.userName = decoded[propUserName];
   }
+
+
 
   getUserName(): string {
     return this.userName;

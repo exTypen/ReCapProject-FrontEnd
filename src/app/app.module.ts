@@ -42,6 +42,9 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ColorUpdateComponent } from './components/color-update/color-update.component';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { BrandUpdateComponent } from './components/brand-update/brand-update.component';
+import { CarFilterPipe } from './pipes/car-filter.pipe';
+import { BrandFilterPipe } from './pipes/brand-filter.pipe';
+import { ColorFilterPipe } from './pipes/color-filter.pipe';
 
 
 export function tokenGetter() {
@@ -68,6 +71,9 @@ export function tokenGetter() {
     ColorUpdateComponent,
     BrandAddComponent,
     BrandUpdateComponent,
+    CarFilterPipe,
+    BrandFilterPipe,
+    ColorFilterPipe,
 
     
   ],

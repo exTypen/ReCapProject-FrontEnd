@@ -38,7 +38,7 @@ export class CarUpdateComponent implements OnInit {
     this.activatedRoute.params.subscribe((params)=>{
       if(params["carId"]){
         this.getCarDetailsByCarId(params["carId"])
-        this.createCarUpdateForm();
+        
         this.getBrands()
         this.getColors()
       }
@@ -46,20 +46,18 @@ export class CarUpdateComponent implements OnInit {
     
   }
 
-  getCarDetailsByCarId(carId: number) {
-    this.carService.getCarDetailsByCarId(carId).subscribe((response) => {
-      this.carDetails = response.data[0];
-      console.log(this.carDetails)
-    });
+  async getCarDetailsByCarId(carId: number) {
+    this.carDetails = (await this.carService.getCarDetailsByCarId(carId).toPromise()).data[0]
+    this.createCarUpdateForm();
   }
 
   createCarUpdateForm() {
     this.carUpdateForm = this.formBuilder.group({
-      BrandId: ["", Validators.required],
-      ColorId: ["", Validators.required],
-      ModelYear: ["",Validators.required],
-      DailyPrice: ["", Validators.required],
-      Description: ["", Validators.required],
+      BrandId: [this.carDetails.brandId, Validators.required],
+      ColorId: [this.carDetails.colorId, Validators.required],
+      ModelYear: [this.carDetails.modelYear,Validators.required],
+      DailyPrice: [this.carDetails.dailyPrice, Validators.required],
+      Description: [this.carDetails.description, Validators.required],
     });
   }
 

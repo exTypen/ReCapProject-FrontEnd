@@ -28,21 +28,19 @@ export class ColorUpdateComponent implements OnInit {
     this.activatedRoute.params.subscribe((params)=>{
       if(params["colorId"]){
         this.getColorById(params["colorId"])
-        this.createColorUpdateForm()
       }
     })
     
   }
 
-  getColorById(id:number){
-    this.colorService.getById(id).subscribe((response)=>{
-      this.color = response.data[0]
-    })
+  async getColorById(id:number){
+    this.color = (await this.colorService.getById(id).toPromise()).data[0]
+    this.createColorUpdateForm()
   }
 
   createColorUpdateForm() {
     this.colorUpdateForm = this.formBuilder.group({
-      ColorName: ['', Validators.required]
+      ColorName: [this.color.colorName, Validators.required]
     });
   }
 

@@ -1,4 +1,4 @@
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -10,7 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDetail } from 'src/app/models/cardetail';
 import { Rental } from 'src/app/models/rental';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarService } from 'src/app/services/car.service';
+import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { RentalService } from 'src/app/services/rental.service';
 import { environment } from 'src/environments/environment';
 
@@ -27,12 +29,17 @@ export class CarDetailPageComponent implements OnInit {
   images: string[]
   imageBasePath = environment.baseUrl;
   defaultImg = '/uploads/default.jpg';
+
+  rental:Rental
+  isLogged:boolean
   constructor(private carService: CarService,
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router,
     private toastrService: ToastrService,
     private rentalService: RentalService,
+    private dataTransferService: DataTransferService,
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
@@ -41,8 +48,6 @@ export class CarDetailPageComponent implements OnInit {
         this.getCarDetailsByCarId(params['carId']);
         
         this.detailForm = this.formBuilder.group({
-          carId: 2007,
-          userId: 2,
           rentDate: ['', Validators.required],
           returnDate: ['', Validators.required],
         });
@@ -52,6 +57,8 @@ export class CarDetailPageComponent implements OnInit {
   }
 
 
+
+
   setImageClass(imagePath:string){
     if(imagePath === this.images[0]){
       return "carousel-item active"
@@ -59,6 +66,7 @@ export class CarDetailPageComponent implements OnInit {
       return "carousel-item"
     }
   }
+  
 
   getCarDetailsByCarId(carId: number) {
     this.carService.getCarDetailsByCarId(carId).subscribe((response) => {
@@ -68,9 +76,6 @@ export class CarDetailPageComponent implements OnInit {
     });
   }
 
-  // routePayment(){
-  //   this.router.navigate(["/car/payment/" + this.carDetails[0].carId])
-  // }
 
   routePayment(){
       this.router.navigate(["/car/payment/" + this.carDetails[0].carId])
@@ -78,20 +83,23 @@ export class CarDetailPageComponent implements OnInit {
 
   checkIsCarRentable(){
     if (this.detailForm.valid){
-      let rentalModel: Rental = Object.assign({carId:this.carDetails[0].carId, userId:2}, this.detailForm.value);
-        this.rentalService.checkIsCarRentable(rentalModel).subscribe((response)=>{
-          console.log(response.success)
-          this.isCarRentable =response.success
-          if (response.success) {
-            this.routePayment()
-          }else if(!response.success){
-            console.log("hatasdaqds")
-            this.toastrService.error("Araba kirada","Hata")
-          }
-        },(responseError) =>{
-          console.log(responseError)
-          this.toastrService.error(responseError.error.message);
-        })}
+      this.isLogged = this.authService.isAuthenticated()
+      if (this.isLogged == true){
+        let userId: number = this.authService.getCurrentUserId()
+        let rentalModel: Rental = Object.assign({carId:this.carDetails[0].carId, userId:userId}, this.detailForm.value);      
+          this.rentalService.checkIsCarRentable(rentalModel).subscribe((response)=>{
+            this.isCarRentable =response.success
+            if (response.success) {
+              this.dataTransferService.setRental(rentalModel)
+              this.routePayment()
+            }
+          },(responseError) =>{
+            this.toastrService.error(responseError.error.message);
+          })
+      }else{
+        this.toastrService.error("Giriş Yapmalısınız", "Hata")
+      }
+      }
         else{
           this.toastrService.error("Tüm alanları doldurun", "Hata")
         }

@@ -4,7 +4,7 @@
         <div class="card-header">
           <h3 style="margin-bottom: 0px;" class="title">Arabayı Düzenle</h3>
         </div>
-        <div class="card-body">
+        <div *ngIf="carUpdateForm" class="card-body">
           <form [formGroup]="carUpdateForm">
             <div style="margin-bottom: 10px;">
               <label for="brand">Marka:</label>
@@ -29,6 +29,7 @@
               <label for="modelyear">Model Yılı</label>
               <div class="form-group">
                 <input
+     
                   type="number"
                   id="unitsInStock"
                   formControlName="ModelYear"
