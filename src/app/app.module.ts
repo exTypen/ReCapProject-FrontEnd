@@ -15,6 +15,7 @@ import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MultiSelectModule } from 'primeng/multiselect';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +46,10 @@ import { BrandUpdateComponent } from './components/brand-update/brand-update.com
 import { CarFilterPipe } from './pipes/car-filter.pipe';
 import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
+import { ProfileRentalsComponent } from './components/profile-rentals/profile-rentals.component';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
 
 
 export function tokenGetter() {
@@ -74,6 +79,10 @@ export function tokenGetter() {
     CarFilterPipe,
     BrandFilterPipe,
     ColorFilterPipe,
+    ProfileComponent,
+    UpdatePasswordComponent,
+    ProfileRentalsComponent,
+    ProfileUpdateComponent,
 
     
   ],
@@ -82,14 +91,6 @@ export function tokenGetter() {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter
-      }
-    }),
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right',
-    }),
     FormsModule,
     ReactiveFormsModule,
     CarouselModule,
@@ -105,6 +106,15 @@ export function tokenGetter() {
     InputTextareaModule,
     MultiSelectModule,
     DynamicDialogModule,
+    CheckboxModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    }),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
     
     
   ],

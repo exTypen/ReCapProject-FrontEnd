@@ -14,8 +14,13 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { ColorUpdateComponent } from './components/color-update/color-update.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { ProfileRentalsComponent } from './components/profile-rentals/profile-rentals.component';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { AdminGuard } from './guards/admin.guard';
+import { LoginGuard } from './guards/login.guard';
 
 
 const routes: Routes = [
@@ -26,10 +31,14 @@ const routes: Routes = [
   { path: 'cars/:brandId/:colorId', component: CarComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent, canActivate:[LoginGuard]},
+  { path: 'profile/update', component: ProfileUpdateComponent, canActivate:[LoginGuard]},
+  { path: 'profile/password', component: UpdatePasswordComponent, canActivate:[LoginGuard]},
+  { path: 'profile/rentals', component: ProfileRentalsComponent, canActivate:[LoginGuard]},
   { path: 'admin/cars/add', component: CarAddComponent},
   { path: 'car/payment/:carId', component: PaymentComponent },
   { path: 'car/page/:carId', component: CarDetailPageComponent },
-  { path: 'admin', component: AdminComponent},//, canActivate:[AdminGuard]},
+  { path: 'admin', component: AdminComponent, canActivate:[AdminGuard]},
   { path: 'admin/rentals', component: AdminRentalsComponent },
   { path: 'admin/cars', component: AdminCarsComponent },
   { path: 'admin/cars/update/:carId', component: CarUpdateComponent },

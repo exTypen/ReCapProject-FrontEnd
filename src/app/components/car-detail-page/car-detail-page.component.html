@@ -2,20 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <div id="carouselExampleControls" *ngIf="images" style="width: auto" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleControls" *ngIf="images.length !== 0" style="width: auto" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div *ngIf="images">
-              <div [class]="setImageClass(image)" *ngFor="let image of images">
-                <img [src]="
-                    images.length !== 0
-                      ? imageBasePath + image
-                      : imageBasePath + defaultImg
-                  " class="d-block w-100" alt="..." />
-              </div>
+            <div [class]="setImageClass(image)" *ngFor="let image of images">
+              <img [src]="
+                  images.length !== 0
+                    ? imageBasePath + image
+                    : imageBasePath + defaultImg
+                " class="d-block w-100" alt="..." />
             </div>
-            <div *ngIf="images.length === 0" class="carousel-item active" >
-              <img [src]="imageBasePath + defaultImg" class="d-block w-100" alt="..." />
-            </div>
+            
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
             data-bs-slide="prev">
@@ -28,6 +24,15 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
+
+        <div id="carouselExampleSlidesOnly" *ngIf="images.length === 0" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img [src]="imageBasePath + defaultImg" class="d-block w-100" alt="...">
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="col-md-5">
         <div *ngFor="let car of carDetails">

@@ -1,0 +1,20 @@
+<div class="row">
+
+    <div style="margin-top: 70px;" class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item active" aria-current="true">Profil Bilgileri</li>
+            <li class="list-group-item" routerLink="/profile/update">Profil Güncelleme</li>
+            <li class="list-group-item" routerLink="/profile/password">Şifre Değiştirme</li>
+            <li class="list-group-item" routerLink="/profile/rentals">Kiralamalar</li>
+          </ul>
+    </div>
+    <div class="col-md-8">
+        <div style="margin-top: 70px;" class="card">
+            <div class="card-body">
+                <h2 style="margin-left: 50px; margin-top: 30px; font-weight: 350;"><b style="font-weight: 550; margin-right: 15px;">İsim:</b>{{userDetail.firstName}}</h2>
+                <h2 style="margin-left: 50px; font-weight: 350;"><b style="font-weight: 550; margin-right: 15px;">Soyisim:</b>{{userDetail.lastName}}</h2>
+                <h2 style="margin-left: 50px; font-weight: 350;"><b style="font-weight: 550; margin-right: 15px;">Mail Adresi:</b>{{userDetail.email}}</h2>
+            </div>
+        </div>
+    </div>
+</div>

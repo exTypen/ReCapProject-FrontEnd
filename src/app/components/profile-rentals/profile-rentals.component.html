@@ -1,0 +1,31 @@
+<div class="row">
+
+    <div style="margin-top: 70px;" class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item" routerLink="/profile" aria-current="true">Profil Bilgileri</li>
+            <li class="list-group-item" routerLink="/profile/update">Profil Güncelleme</li>
+            <li class="list-group-item" routerLink="/profile/password">Şifre Değiştirme</li>
+            <li class="list-group-item active" routerLink="/profile/rentals">Kiralamalar</li>
+          </ul>
+    </div>
+    <div class="col-md-8" style="margin-top: 70px;">
+        <p-table [value]="userDetail.rentals">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Kiralama ID</th>
+                    <th>Araba ID</th>
+                    <th>Başlangıç Tarihi</th>
+                    <th>Dönüş Tarihi</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rental>
+                <tr>
+                    <td>{{rental.id}}</td>
+                    <td (click)="routeCarPage(rental.carId)">{{rental.carId}}</td>
+                    <td>{{rental.rentDate | date:"shortDate"}}</td>
+                    <td>{{rental.returnDate | date:"shortDate"}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

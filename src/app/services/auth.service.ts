@@ -14,6 +14,9 @@ import { OperationClaim } from '../models/operationClaim';
 //import { PasswordChangeModel } from '../models/passwordChangeModel';
 import { ResponseModel } from '../models/responseModel';
 import { environment } from 'src/environments/environment';
+import { UserService } from './user.service';
+import { Password } from '../models/password';
+import { verifyPassword } from '../models/verifyPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +24,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   userName: string;
   currentUserId: number;
+  userEmail: string
   roles: string[] = [];
   apiUrl = environment.baseUrl + "/api/"
   jwtHelper:JwtHelperService = new JwtHelperService();
@@ -28,7 +32,7 @@ export class AuthService {
   constructor(
     private httpClient:HttpClient,
     private storageService:LocalStorageService,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
   ) { 
     this.setUserStats()
   }
@@ -62,6 +66,7 @@ export class AuthService {
         this.toastrService.success("Kayıt olundu","Başarılı")
         this.setUserName()
         this.setCurrentUserId()
+        this.setUserEmail()
         this.setRoles()
         setTimeout(function(){
           location.reload()
@@ -80,10 +85,21 @@ export class AuthService {
     }
   }
 
+  createPasswordHash(password:string):Observable<SingleResponseModel<Password>>{
+    let newPath = this.apiUrl + "auth/createpasswordhash?password="+password
+    return this.httpClient.get<SingleResponseModel<Password>>(newPath)
+  }
+
+  verifyPassword(verifyPassword:verifyPassword):Observable<boolean>{
+    let newPath = this.apiUrl + "auth/verifypassword"
+    return this.httpClient.post<boolean>(newPath, verifyPassword)
+  }
+
 
   async setUserStats(){
     if(this.loggedIn()){
       this.setCurrentUserId()
+      this.setUserEmail()
       this.setUserName()
       await this.setRoles()
     }
@@ -137,7 +153,18 @@ export class AuthService {
     }
     catch(Error){
         return null;
+      
     }
+  }
+
+  setUserEmail(){
+    var decoded = this.getDecodedToken()
+    var propUserId = Object.keys(decoded).filter(x => x.endsWith("/email"))[0];
+    this.userEmail = decoded[propUserId];
+  }
+
+  getUserEmail():string{
+    return this.userEmail
   }
 
   async haveRole(role: string): Promise<boolean> {

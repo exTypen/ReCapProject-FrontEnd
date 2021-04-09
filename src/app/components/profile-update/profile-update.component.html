@@ -1,0 +1,70 @@
+<div class="row">
+
+    <div style="margin-top: 70px;" class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item" routerLink="/profile" aria-current="true" routerLink ="/profile">Profil Bilgileri</li>
+            <li class="list-group-item active" routerLink="/profile/update">Profil Güncelleme</li>
+            <li class="list-group-item" routerLink="/profile/password">Şifre Değiştirme</li>
+            <li class="list-group-item" routerLink="/profile/rentals">Kiralamalar</li>
+          </ul>
+    </div>
+    <div class="col-md-8">
+        <div style="margin-top: 70px;" class="content">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 style="margin-bottom: 0px;" class="title">Profil Güncelle</h3>
+                </div>
+                <div class="card-body">
+                  <form [formGroup]="userUpdateForm">
+                    
+          
+                    <div class="mb-3">
+                      <label for="firstName">İsim</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          [(ngModel)]="userDetail.firstName"
+                          id="firstName"
+                          formControlName="FirstName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+          
+                    <div class="mb-3">
+                      <label for="lastName">Soyisim</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          [(ngModel)]="userDetail.lastName"
+                          id="lastName"
+                          formControlName="LastName"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+          
+                    <div class="mb-3">
+                      <label for="email">Email</label>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          [(ngModel)]="userDetail.email"
+                          id="email"
+                          formControlName="Email"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-fill btn-primary" (click)="update()">Güncelle</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+</div>

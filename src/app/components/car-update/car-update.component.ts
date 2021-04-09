@@ -43,8 +43,9 @@ export class CarUpdateComponent implements OnInit {
         this.getColors()
       }
     })
-    
   }
+
+  
 
   async getCarDetailsByCarId(carId: number) {
     this.carDetails = (await this.carService.getCarDetailsByCarId(carId).toPromise()).data[0]
