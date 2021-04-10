@@ -1,7 +1,7 @@
 <body class="text-center">
   <main class="form-signin">
     <form [formGroup]="registerForm">
-      <h1 class="h3 mb-3 fw-normal">Register</h1>
+      <h1 class="h3 mb-3 fw-normal">Kayıt Olun</h1>
 
       <div class="form-floating">
         <input
@@ -13,7 +13,7 @@
         />
         <label for="floatingInput">First Name</label>
       </div>
-      <div class="form-floating">
+      <div style="margin-top: 5px;" class="form-floating">
         <input
           formControlName="lastName"
           type="text"
@@ -23,7 +23,7 @@
         />
         <label for="floatingPassword">Last Name</label>
       </div>
-      <div class="form-floating">
+      <div style="margin-top: 5px;" class="form-floating">
         <input
           formControlName="email"
           type="email"
@@ -33,7 +33,7 @@
         />
         <label for="floatingPassword">E-Mail</label>
       </div>
-      <div class="form-floating">
+      <div style="margin-top: 5px;" class="form-floating">
         <input
           formControlName="password"
           type="password"
@@ -44,11 +44,6 @@
         <label for="floatingPassword">Password</label>
       </div>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me" /> Remember me
-        </label>
-      </div>
       <button
         class="w-100 btn btn-lg btn-primary"
         type="submit"

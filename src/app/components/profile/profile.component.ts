@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit {
   getUserDetailsById(id:number){
      this.userService.getUserDetailsById(id).subscribe(response=>{
        this.userDetail = response.data[0]
-       console.log(this.userDetail)
      })
   }
 }

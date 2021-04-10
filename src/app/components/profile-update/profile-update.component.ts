@@ -51,7 +51,7 @@ export class ProfileUpdateComponent implements OnInit {
 
   update(){
     if(this.userUpdateForm.valid){
-      let userModel:User = Object.assign({passwordSalt: this.userDetail.passwordSalt, passwordHash: this.userDetail.passwordHash, id: this.userDetail.userId, status:true}, this.userUpdateForm.value)
+      let userModel:User = Object.assign({passwordSalt: this.userDetail.passwordSalt, passwordHash: this.userDetail.passwordHash, id: this.userDetail.userId, findexPoint:this.userDetail.findexPoint, status:true}, this.userUpdateForm.value)
       this.userService.update(userModel).subscribe(response=>{
         if(response.success){
           this.toastrService.success(response.message, "Başarılı")

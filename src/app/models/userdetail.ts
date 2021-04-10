@@ -9,5 +9,7 @@ export interface UserDetail {
 	passwordHash: Byte[]
 	passwordSalt: Byte[]
 	operationClaimsId: number[];
+	cardIds: number[]
 	rentals: Rental[]
+	findexPoint:number
 }

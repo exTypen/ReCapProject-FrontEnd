@@ -8,7 +8,6 @@ export class DataTransferService {
 
   rental:Rental
   constructor() { }
-
    
   setRental(data:Rental){
     this.rental = data

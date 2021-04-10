@@ -5,7 +5,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { CarDetail } from 'src/app/models/cardetail';
@@ -32,7 +32,8 @@ export class CarUpdateComponent implements OnInit {
     private carService: CarService,
     private toastrService: ToastrService,
     private brandService: BrandService,
-    private colorService: ColorService) { }
+    private colorService: ColorService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params)=>{
@@ -59,6 +60,7 @@ export class CarUpdateComponent implements OnInit {
       ModelYear: [this.carDetails.modelYear,Validators.required],
       DailyPrice: [this.carDetails.dailyPrice, Validators.required],
       Description: [this.carDetails.description, Validators.required],
+      MinFindexPoint: [this.carDetails.minFindexPoint, Validators.required],
     });
   }
 
@@ -77,10 +79,10 @@ export class CarUpdateComponent implements OnInit {
   update() {
     if (this.carUpdateForm.valid) {
       let carModel = Object.assign({carId:this.carDetails.carId}, this.carUpdateForm.value);
-      console.log(carModel)
       this.carService.update(carModel).subscribe(
         (response) => {
           this.toastrService.success(response.message, 'Başarılı');
+          this.router.navigate(["/admin/cars"])
         },
         (responseError) => {
           if (responseError.error.Errors.length > 0) {

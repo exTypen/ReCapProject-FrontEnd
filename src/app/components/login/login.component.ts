@@ -6,11 +6,9 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { LoginModel } from 'src/app/models/loginModel';
 import { AuthService } from 'src/app/services/auth.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +22,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private toastrService: ToastrService,
-    private localStorageService: LocalStorageService,
-    private jwtHelper: JwtHelperService,
     private router: Router
   ) {}
 
@@ -50,10 +46,4 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  routeMainPage(){
-    if(this.islogin){
-      this.router.navigate(["/"])
-    }
-    
-  }
 }

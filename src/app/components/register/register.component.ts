@@ -34,24 +34,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
     });
   }
-
-  // register() {
-  //   if (this.registerForm.valid) {
-  //     console.log(this.registerForm.value);
-  //     let registerModel = Object.assign({}, this.registerForm.value);
-
-  //     this.authService.register(registerModel).subscribe(
-  //       (response) => {
-  //         this.toastrService.info(response.message);
-  //         localStorage.setItem('token', response.data.token);
-  //       },
-  //       (responseError) => {
-  //         console.log(responseError);
-  //       }
-  //     );
-  //   }
-  // }
-
+  
   register(){
     if(this.registerForm.valid){
       let registerModel:RegisterModel = Object.assign({},this.registerForm.value)

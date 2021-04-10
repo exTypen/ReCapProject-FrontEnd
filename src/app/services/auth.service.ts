@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
 import { Password } from '../models/password';
 import { verifyPassword } from '../models/verifyPassword';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,7 @@ export class AuthService {
     private httpClient:HttpClient,
     private storageService:LocalStorageService,
     private toastrService:ToastrService,
+    private router: Router
   ) { 
     this.setUserStats()
   }
@@ -51,6 +53,8 @@ export class AuthService {
         setTimeout(function(){
           location.reload()
         },400)
+
+        this.router.navigate(["/"])
       }
     },responseError => {
       this.toastrService.error(responseError.error,"Hata")

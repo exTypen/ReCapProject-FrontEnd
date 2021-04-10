@@ -31,7 +31,6 @@ export class AdminCarsComponent implements OnInit {
         this.toastrService.error("Araba Eklenmedi")
       }
     })
-    console.log("burdayım")
   }
 
   getCarDetails() {

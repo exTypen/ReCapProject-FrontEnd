@@ -71,7 +71,7 @@ export class UpdatePasswordComponent implements OnInit {
     if(this.passwordUpdateForm.value.NewPassword === this.passwordUpdateForm.value.NewPasswordAgain){
       await this.createPasswordHash(this.passwordUpdateForm.value.NewPassword)
       let userModel: User = Object.assign({id:this.userDetail.userId, firstName: this.userDetail.firstName, lastName: this.userDetail.lastName, email:this.userDetail.email,
-      passwordHash: this.password.passwordHash, passwordSalt: this.password.passwordSalt, status:true})
+      passwordHash: this.password.passwordHash, passwordSalt: this.password.passwordSalt, findexPoint:this.userDetail.findexPoint, status:true})
       this.userService.update(userModel).subscribe(response=>{
         this.toasterService.success(response.message, "Başarılı")
       },errorResponse => {

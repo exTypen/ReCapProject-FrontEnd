@@ -8,6 +8,7 @@
                 <th>Model Yılı</th>
                 <th>Günlük Ücreti</th>
                 <th>Açıklama</th>
+                <th>Findex Puanı</th>
                 <th>
                     <button routerLink="/admin/cars/add" style="width: max;" pButton type="button" label="Ekle"></button>
                 </th>
@@ -23,9 +24,16 @@
                 <td>{{carDetail.modelYear}}</td>
                 <td>{{carDetail.dailyPrice}}</td>
                 <td>{{carDetail.description}}</td>
+                <td>{{carDetail.minFindexPoint}}</td>
                 <td>
-                    <button routerLink="/admin/cars/update/{{carDetail.carId}}" pButton type="button" label="Düzenle"></button>
-                    <button style="margin-left: 10px;" pButton type="button" label="Sil" class="p-button-danger" (click)="delete(carDetail)"></button>
+                    <div class="row">
+                        <div style="margin-left: -5px;" class="col-md-7">
+                            <button routerLink="/admin/cars/update/{{carDetail.carId}}" pButton type="button" label="Düzenle"></button>
+                        </div>
+                        <div style="margin-left: 5px;" class="col-md-5">
+                            <button pButton type="button" label="Sil" class="p-button-danger" (click)="delete(carDetail)"></button>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </ng-template>

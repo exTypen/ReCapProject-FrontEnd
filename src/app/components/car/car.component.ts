@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/cardetail';
-import { CarImage } from 'src/app/models/carimage';
 import { CarService } from 'src/app/services/car.service';
 import { CarimageService } from 'src/app/services/carimage.service';
 import { environment } from 'src/environments/environment';
@@ -13,7 +12,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  carImages: CarImage[] = [];
   cars: Car[] = [];
   carDetails: CarDetail[] = [];
   imageBasePath = environment.baseUrl;
@@ -21,7 +19,6 @@ export class CarComponent implements OnInit {
   filterText = ""
   constructor(
     private carService: CarService,
-    private carImageService: CarimageService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -50,23 +47,16 @@ export class CarComponent implements OnInit {
     });
   }
 
-  getImages(carid: number) {
-    this.carImageService.getImages(carid).subscribe((response) => {
-      this.carImages = response.data;
-    });
-  }
 
   getCarDetails() {
     this.carService.getCarDetails().subscribe((response) => {
-      this.carDetails = response.data;
-      console.log(response.data);
+    this.carDetails = response.data
     });
   }
 
   getCarDetailsFiltered(brandid: number, colorid: number) {
     this.carService.getCarDetailsFiltered(brandid, colorid).subscribe((response) => {
       this.carDetails = response.data;
-      console.log(response.data);
     });
   }
 
@@ -74,14 +64,12 @@ export class CarComponent implements OnInit {
     
       this.carService.getCarsByBrandId(brandId).subscribe((response) => {
         this.carDetails = response.data;
-        console.log(this.carDetails)
       });
   }
 
   getCarsByColorId(colorId: number) {
     this.carService.getCarsByColorId(colorId).subscribe((response) => {
       this.carDetails = response.data;
-      console.log(this.carDetails);
     });
   }
 

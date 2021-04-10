@@ -50,6 +50,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UpdatePasswordComponent } from './components/update-password/update-password.component';
 import { ProfileRentalsComponent } from './components/profile-rentals/profile-rentals.component';
 import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
+import { ColorDirective } from './directives/color.directive';
 
 
 export function tokenGetter() {
@@ -83,6 +84,7 @@ export function tokenGetter() {
     UpdatePasswordComponent,
     ProfileRentalsComponent,
     ProfileUpdateComponent,
+    ColorDirective,
 
     
   ],

@@ -8,4 +8,5 @@ export interface User{
     passwordSalt:Byte[]
     passwordHash:Byte[]
     status:boolean
+    findexPoint:number
 }

@@ -58,14 +58,12 @@ export class NavComponent implements OnInit {
 
   login(){
       const ref = this.dialogService.open(LoginComponent, {
-          header: 'Giriş yap',
           width: '30%'
       });
   }
 
   register(){
     const ref = this.dialogService.open(RegisterComponent, {
-        header: 'Kayıt Ol',
         width: '30%'
     });
   }

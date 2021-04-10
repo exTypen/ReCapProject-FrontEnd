@@ -1,10 +1,10 @@
 <form [formGroup]="detailForm">
   <div class="container">
     <div class="row">
-      <div class="col-md-7">
+      <div *ngIf="images" class="col-md-7">
         <div id="carouselExampleControls" *ngIf="images.length !== 0" style="width: auto" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div [class]="setImageClass(image)" *ngFor="let image of images">
+          <div  class="carousel-inner">
+            <div  [class]="setImageClass(image)" *ngFor="let image of images">
               <img [src]="
                   images.length !== 0
                     ? imageBasePath + image
@@ -41,18 +41,27 @@
             <div class="col-sm-6">
               <p><b>Marka:</b> {{ car.brandName }}</p>
               <p style="margin-top: 6px;"><b>Renk:</b> {{ car.colorName }}</p>
+              <p><b>Findex Puanı:</b> {{ car.minFindexPoint }}</p>
+                        
+            </div>
+            <div class="col-sm-6">
+              <p><b>Model Yılı:</b> {{ car.modelYear }}</p>
+              <p><b>Günlük Fiyatı:</b> {{ car.dailyPrice }}TL</p>        
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-sm-6">
               <p><b>Kiralama Tarihi:</b></p>
               <input formControlName="rentDate" style="margin-top: -8px;" class="form-control" type="date" />
             </div>
             <div class="col-sm-6">
-              <p><b>Model Yılı:</b> {{ car.modelYear }}</p>
-              <p><b>Günlük Fiyatı:</b> {{ car.dailyPrice }}TL</p>
               <p><b>Dönüş Tarihi:</b></p>
               <input formControlName="returnDate" style="margin-top: -8px;" class="form-control" type="date" />
             </div>
           </div>
         </div>
-
         <button type="button" style="margin-top: 12px; width: 515px;" class="btn btn-primary"  (click)="checkIsCarRentable()">
           Kirala
         </button>
@@ -68,8 +77,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let rental of rentals ">
-          <td>{{ rental.rentDate }}</td>
-          <td>{{ rental.returnDate }}</td>
+          <td>{{ rental.rentDate | date:"shortDate"}}</td>
+          <td>{{ rental.returnDate | date:"shortDate"}}</td>
         </tr>
       </tbody>
     </table>
