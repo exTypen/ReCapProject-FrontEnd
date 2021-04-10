@@ -20,7 +20,7 @@ This project is the frontend part of <a href="https://github.com/cenkerkumlucali
 - Reactive Forms
 - Validation processes
   - Toastr
-- Data transfer between Components, Child to Parent Data Binding
+- Data transfer between Components, with Service
 - Locale Storage control
 - Models
 - Services
@@ -33,5 +33,5 @@ This project is the frontend part of <a href="https://github.com/cenkerkumlucali
 - Popper.js 1.16.1
 - Primeicons 4.1.0
 - Primeng 11.3.1
-- 
-https://www.youtube.com/watch?v=zw77_xHpYEw&ab_channel=YasirKILIN%C3%87
+
+[![](http://img.youtube.com/vi/zw77_xHpYEw/0.jpg)](http://www.youtube.com/watch?v=zw77_xHpYEw "")
