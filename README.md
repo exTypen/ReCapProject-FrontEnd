@@ -34,4 +34,4 @@ This project is the frontend part of <a href="https://github.com/cenkerkumlucali
 - Primeicons 4.1.0
 - Primeng 11.3.1
 
-[link text](https://www.youtube.com/watch?v=zw77_xHpYEw&ab_channel=YasirKILIN%C3%87)
+https://www.youtube.com/watch?v=zw77_xHpYEw&ab_channel=YasirKILIN%C3%87
