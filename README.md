@@ -33,5 +33,5 @@ This project is the frontend part of <a href="https://github.com/cenkerkumlucali
 - Popper.js 1.16.1
 - Primeicons 4.1.0
 - Primeng 11.3.1
-
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/zw77_xHpYEw&ab_/0.jpg)](http://www.youtube.com/watch?v=zw77_xHpYEw&ab_ "ReCap")
+- 
+https://www.youtube.com/watch?v=zw77_xHpYEw&ab_channel=YasirKILIN%C3%87
