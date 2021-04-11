@@ -97,17 +97,24 @@ export class CarDetailPageComponent implements OnInit {
       this.isLogged = this.authService.isAuthenticated()
       if (this.isLogged == true){
         if (this.carDetails[0].minFindexPoint<=this.userDetails.findexPoint){
-          let rentalModel: Rental = Object.assign({carId:this.carDetails[0].carId, userId:this.userId}, this.detailForm.value);      
-          this.rentalService.checkIsCarRentable(rentalModel).subscribe((response)=>{
-            this.isCarRentable =response.success
-            if (response.success) {
-              this.dataTransferService.setRental(rentalModel)
-
-              this.routePayment()
-            }
-          },(responseError) =>{
-            this.toastrService.error(responseError.error.message);
-          })
+          let rentalModel: Rental = Object.assign({carId:this.carDetails[0].carId, userId:this.userId}, this.detailForm.value);   
+          var date1 = new Date(rentalModel.returnDate.toString());
+          var date2 = new Date(rentalModel.rentDate.toString());
+          if(date1.getTime()>date2.getTime()){
+            this.rentalService.checkIsCarRentable(rentalModel).subscribe((response)=>{
+              this.isCarRentable =response.success
+              if (response.success) {
+                this.dataTransferService.setRental(rentalModel)
+  
+                this.routePayment()
+              }
+            },(responseError) =>{
+              this.toastrService.error(responseError.error.message);
+            })
+          }else{
+              this.toastrService.error("Tarihleri düzgün seçin","Hata")
+          }
+          
         }else{
           this.toastrService.error("Findex Puanınız bu aracı almak için yeterli değil", "Hata")
         }
