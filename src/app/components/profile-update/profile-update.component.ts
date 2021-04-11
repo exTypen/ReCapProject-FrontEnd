@@ -43,9 +43,9 @@ export class ProfileUpdateComponent implements OnInit {
   createUserUpdateForm() {
     this.userUpdateForm = this.formBuilder.group({
       
-      FirstName: ["", Validators.required],
-      LastName: ["", Validators.required],
-      Email: ["", Validators.required],
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      email: ["", Validators.required],
     });
   }
 

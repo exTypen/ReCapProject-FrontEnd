@@ -39,8 +39,8 @@ export class UpdatePasswordComponent implements OnInit {
   createPasswordUpdateForm() {
     this.passwordUpdateForm = this.formBuilder.group({   
       //OldPassword: ["", Validators.required],
-      NewPassword: ["", Validators.required],
-      NewPasswordAgain: ["", Validators.required],
+      newPassword: ["", Validators.required],
+      newPasswordAgain: ["", Validators.required],
     });
   }
 
@@ -68,7 +68,7 @@ export class UpdatePasswordComponent implements OnInit {
     // passwordHash: this.userDetail.passwordHash, passwordSalt:this.userDetail.passwordSalt})
     // await this.verifyPassword(verifyModel)
 
-    if(this.passwordUpdateForm.value.NewPassword === this.passwordUpdateForm.value.NewPasswordAgain){
+    if(this.passwordUpdateForm.value.newPassword === this.passwordUpdateForm.value.newPasswordAgain){
       await this.createPasswordHash(this.passwordUpdateForm.value.NewPassword)
       let userModel: User = Object.assign({id:this.userDetail.userId, firstName: this.userDetail.firstName, lastName: this.userDetail.lastName, email:this.userDetail.email,
       passwordHash: this.password.passwordHash, passwordSalt: this.password.passwordSalt, findexPoint:this.userDetail.findexPoint, status:true})

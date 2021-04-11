@@ -40,7 +40,7 @@ export class ColorUpdateComponent implements OnInit {
 
   createColorUpdateForm() {
     this.colorUpdateForm = this.formBuilder.group({
-      ColorName: [this.color.colorName, Validators.required]
+      colorName: [this.color.colorName, Validators.required]
     });
   }
 

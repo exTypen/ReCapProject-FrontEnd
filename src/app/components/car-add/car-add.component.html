@@ -9,7 +9,7 @@
           <div style="margin-bottom: 10px;">
             <label for="brand">Marka:</label>
             <div style="margin-top: -10px;">
-              <select class="form-select" formControlName="BrandId" style="margin-top: 10px;" [(ngModel)]="brandId">
+              <select class="form-select" formControlName="brandId" style="margin-top: 10px;" [(ngModel)]="brandId">
                 <option *ngFor="let brand of brands" [ngValue]="brand.brandId">{{brand.brandName}}</option>
               </select>
             </div>
@@ -18,7 +18,7 @@
           <div style="margin-bottom: 10px;">
             <label for="color">Renk:</label>
             <div style="margin-top: -10px;">
-              <select class="form-select" formControlName="ColorId" style="margin-top: 10px;" [(ngModel)]="colorId">
+              <select class="form-select" formControlName="colorId" style="margin-top: 10px;" [(ngModel)]="colorId">
                 <option *ngFor="let color of colors" [ngValue]="color.colorId">{{color.colorName}}</option>
               </select>
             </div>
@@ -30,7 +30,7 @@
               <input
                 type="number"
                 id="unitsInStock"
-                formControlName="ModelYear"
+                formControlName="modelYear"
                 class="form-control"
               />
             </div>
@@ -42,7 +42,7 @@
               <input
                 type="number"
                 id="unitPrice"
-                formControlName="DailyPrice"
+                formControlName="dailyPrice"
                 class="form-control"
               />
             </div>
@@ -54,7 +54,7 @@
               <input
                 type="text"
                 id="unitPrice"
-                formControlName="Description"
+                formControlName="description"
                 class="form-control"
               />
             </div>
@@ -66,7 +66,7 @@
               <input
                 type="number"
                 id="unitPrice"
-                formControlName="MinFindexPoint"
+                formControlName="minFindexPoint"
                 class="form-control"
               />
             </div>
