@@ -4,12 +4,9 @@
       <div *ngIf="images" class="col-md-7">
         <div id="carouselExampleControls" *ngIf="images.length !== 0" style="width: auto" class="carousel slide" data-bs-ride="carousel">
           <div  class="carousel-inner">
-            <div  [class]="setImageClass(image)" *ngFor="let image of images">
-              <img [src]="
-                  images.length !== 0
-                    ? imageBasePath + image
-                    : imageBasePath + defaultImg
-                " class="d-block w-100" alt="..." />
+            <div [class]="setImageClass(image)" *ngFor="let image of images">
+              <img [src]="imageBasePath + image" 
+              class="d-block w-100" alt="..." />
             </div>
             
           </div>
