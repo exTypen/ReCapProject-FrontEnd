@@ -16,7 +16,7 @@ import { CarService } from 'src/app/services/car.service';
 import { DataTransferService } from 'src/app/services/data-transfer.service';
 import { RentalService } from 'src/app/services/rental.service';
 import { UserService } from 'src/app/services/user.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-car-detail-page',
@@ -56,8 +56,8 @@ export class CarDetailPageComponent implements OnInit {
           rentDate: ['', Validators.required],
           returnDate: ['', Validators.required],
         });
-      
-      } 
+
+      }
     });
   }
 
@@ -68,7 +68,7 @@ export class CarDetailPageComponent implements OnInit {
       return "carousel-item"
     }
   }
-  
+
   getUserId(){
     this.userId = this.authService.getCurrentUserId()
   }
@@ -97,7 +97,7 @@ export class CarDetailPageComponent implements OnInit {
       this.isLogged = this.authService.isAuthenticated()
       if (this.isLogged == true){
         if (this.carDetails[0].minFindexPoint<=this.userDetails.findexPoint){
-          let rentalModel: Rental = Object.assign({carId:this.carDetails[0].carId, userId:this.userId}, this.detailForm.value);   
+          let rentalModel: Rental = Object.assign({carId:this.carDetails[0].carId, userId:this.userId}, this.detailForm.value);
           var date1 = new Date(rentalModel.returnDate.toString());
           var date2 = new Date(rentalModel.rentDate.toString());
           if(date1.getTime()>date2.getTime()){
@@ -105,7 +105,7 @@ export class CarDetailPageComponent implements OnInit {
               this.isCarRentable =response.success
               if (response.success) {
                 this.dataTransferService.setRental(rentalModel)
-  
+
                 this.routePayment()
               }
             },(responseError) =>{
@@ -114,11 +114,11 @@ export class CarDetailPageComponent implements OnInit {
           }else{
               this.toastrService.error("Tarihleri düzgün seçin","Hata")
           }
-          
+
         }else{
           this.toastrService.error("Findex Puanınız bu aracı almak için yeterli değil", "Hata")
         }
-        
+
       }else{
         this.toastrService.error("Giriş Yapmalısınız", "Hata")
       }
@@ -126,5 +126,5 @@ export class CarDetailPageComponent implements OnInit {
         else{
           this.toastrService.error("Tüm alanları doldurun", "Hata")
         }
-  }  
+  }
 }

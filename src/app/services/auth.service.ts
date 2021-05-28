@@ -11,13 +11,10 @@ import { LocalStorageService } from './local-storage.service';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ToastrService } from 'ngx-toastr';
 import { OperationClaim } from '../models/operationClaim';
-//import { PasswordChangeModel } from '../models/passwordChangeModel';
-import { ResponseModel } from '../models/responseModel';
-import { environment } from 'src/environments/environment';
-import { UserService } from './user.service';
 import { Password } from '../models/password';
 import { verifyPassword } from '../models/verifyPassword';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +32,7 @@ export class AuthService {
     private storageService:LocalStorageService,
     private toastrService:ToastrService,
     private router: Router
-  ) { 
+  ) {
     this.setUserStats()
   }
 
@@ -156,7 +153,7 @@ export class AuthService {
     }
     catch(Error){
         return null;
-      
+
     }
   }
 
@@ -177,6 +174,6 @@ export class AuthService {
     })
     return check;
   }
-  
+
 }
 

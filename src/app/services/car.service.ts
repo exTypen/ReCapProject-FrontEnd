@@ -5,7 +5,7 @@ import { Car } from '../models/car';
 import { HttpClient } from '@angular/common/http';
 import { CarDetail } from '../models/cardetail';
 import { ResponseModel } from '../models/responseModel';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class CarService {
   delete(car: CarDetail): Observable<ResponseModel> {
     console.log("ser")
     return this.httpClient.post<ResponseModel>(this.apiUrl + 'delete', car);
-   
+
   }
 
   getCars(): Observable<ListResponseModel<Car>> {

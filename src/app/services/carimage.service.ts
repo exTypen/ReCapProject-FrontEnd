@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Car } from '../models/car';
+import { environment } from 'src/environments/environment.prod';
 import { CarImage } from '../models/carimage';
 import { ListResponseModel } from '../models/listResponseModel';
 

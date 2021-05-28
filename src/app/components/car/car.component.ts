@@ -4,7 +4,7 @@ import { Car } from 'src/app/models/car';
 import { CarDetail } from 'src/app/models/cardetail';
 import { CarService } from 'src/app/services/car.service';
 import { CarimageService } from 'src/app/services/carimage.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-car',
@@ -61,7 +61,7 @@ export class CarComponent implements OnInit {
   }
 
   getCarsByBrandId(brandId: number) {
-    
+
       this.carService.getCarsByBrandId(brandId).subscribe((response) => {
         this.carDetails = response.data;
       });
