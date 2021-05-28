@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  islogin:boolean
+  islogin: boolean;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -36,14 +36,15 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
-  login(){
-    if(this.loginForm.valid){
-      let loginModel:LoginModel = Object.assign({},this.loginForm.value)
-      this.authService.login(loginModel)
-    }else{
-      this.toastrService.info("Lütfen tüm alanları doldurunuz","Bilgilendirme")
+  login() {
+    if (this.loginForm.valid) {
+      let loginModel: LoginModel = Object.assign({}, this.loginForm.value);
+      this.authService.login(loginModel);
+    } else {
+      this.toastrService.info(
+        'Lütfen tüm alanları doldurunuz',
+        'Bilgilendirme'
+      );
     }
   }
-
 }
