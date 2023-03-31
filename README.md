@@ -2,7 +2,7 @@
 
 ## About
 
-This project is the frontend part of <a href="https://github.com/cenkerkumlucali/ReCapProject" target="_blank" rel="nofollow"> ReCapProject-backend</a> 
+This project is the frontend part of <a href="https://github.com/exTypen/ReCapProject" target="_blank" rel="nofollow"> ReCapProject-backend</a> 
 
 ### Project Content
 - CRUD Operation
